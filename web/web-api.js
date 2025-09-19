@@ -60,7 +60,7 @@ window.api = {
         return Promise.resolve();
     },
 
-    // --- ¡AQUÍ ESTÁ LA MAGIA! ---
+
     // Esta es la nueva función para seleccionar imágenes en la web
     selectImage: () => {
         return new Promise((resolve) => {
