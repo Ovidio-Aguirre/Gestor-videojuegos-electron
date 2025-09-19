@@ -259,3 +259,24 @@ tbody tr:hover {
 .detail-status {
     margin-top: 1rem;
 }
+/* --- Ajustes para Iconos SVG --- */
+
+/* Alinea el icono del título principal con el texto */
+.app-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Espacio entre el icono y el texto */
+}
+
+/* Cambia el color del icono del título para que coincida con el botón */
+.app-header h1 svg {
+    stroke: var(--accent-green);
+}
+
+
+/* Alinea el icono del botón "Agregar Juego" con el texto */
+#show-add-form-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espacio entre el icono y el texto */
+}
