@@ -37,37 +37,37 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- RENDERIZADO DE DATOS ---
-    const renderGames = (games) => {
-        gamesTableBody.innerHTML = '';
-        games.forEach(game => {
-            const row = document.createElement('tr');
-            row.style.cursor = 'pointer';
-            row.innerHTML = `
-                <td>${game.id}</td>
-                <td>${game.titulo}</td>
-                <td>${game.plataforma}</td>
-                <td>${game.genero}</td>
-                <td>${game.ano_lanzamiento || ''}</td>
-                <td>${game.desarrollador || ''}</td>
-                <td>${game.estado}</td>
-                <td class="action-buttons">
-                    <button class="edit-btn" data-id="${game.id}">✏️</button>
-                    <button class="delete-btn" data-id="${game.id}">🗑️</button>
-                </td>
-            `;
-            
-            row.addEventListener('click', (event) => {
-                if (!event.target.closest('button')) {
-                    showDetailView(game);
-                }
-            });
-
-            gamesTableBody.appendChild(row);
+const renderGames = (games) => {
+    gamesTableBody.innerHTML = '';
+    games.forEach(game => {
+        const row = document.createElement('tr');
+        row.style.cursor = 'pointer';
+        row.innerHTML = `
+            <td data-label="ID">${game.id}</td>
+            <td data-label="Título">${game.titulo}</td>
+            <td data-label="Plataforma">${game.plataforma}</td>
+            <td data-label="Género">${game.genero}</td>
+            <td data-label="Año">${game.ano_lanzamiento || ''}</td>
+            <td data-label="Desarrollador">${game.desarrollador || ''}</td>
+            <td data-label="Estado">${game.estado}</td>
+            <td data-label="Acciones" class="action-buttons-cell">
+                <button class="edit-btn" data-id="${game.id}">✏️</button>
+                <button class="delete-btn" data-id="${game.id}">🗑️</button>
+            </td>
+        `;
+        
+        row.addEventListener('click', (event) => {
+            if (!event.target.closest('button')) {
+                showDetailView(game);
+            }
         });
 
-        document.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', () => handleEdit(btn.dataset.id)));
-        document.querySelectorAll('.delete-btn').forEach(btn => btn.addEventListener('click', () => handleDelete(btn.dataset.id)));
-    };
+        gamesTableBody.appendChild(row);
+    });
+
+    document.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', () => handleEdit(btn.dataset.id)));
+    document.querySelectorAll('.delete-btn').forEach(btn => btn.addEventListener('click', () => handleDelete(btn.dataset.id)));
+};
     
     // --- LÓGICA DE LA VISTA DE DETALLES ---
     const showDetailView = (game) => {
