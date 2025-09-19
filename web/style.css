@@ -285,6 +285,58 @@ tbody tr:hover {
 /* Estilos para pantallas con un ancho máximo de 768px (tablets y móviles) */
 @media (max-width: 768px) {
 
+    /* Pega esto DENTRO del @media (max-width: 768px) { ... } en web/style.css */
+
+/* --- Estilos para la Tabla Responsive --- */
+
+/* Ocultamos la cabecera original de la tabla en móviles */
+table thead {
+    display: none;
+}
+
+/* Hacemos que cada fila se comporte como una "tarjeta" */
+table tr {
+    display: block;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+}
+
+/* Hacemos que cada celda ocupe el 100% del ancho y se apile */
+table td {
+    display: block;
+    text-align: right; /* Alinea el dato a la derecha */
+    border-bottom: none;
+    padding-left: 50%; /* Deja espacio para la etiqueta */
+    position: relative;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Usamos el atributo 'data-label' para crear las nuevas etiquetas a la izquierda */
+table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1rem;
+    width: 45%;
+    text-align: left;
+    font-weight: bold;
+    color: var(--text-secondary);
+}
+
+/* Estilos especiales para la celda de acciones */
+.action-buttons-cell {
+    text-align: center;
+    padding-left: 0;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+.action-buttons-cell::before {
+    display: none; /* No queremos la etiqueta "Acciones" */
+}
+
     /* Reduce el padding general en móviles para dar más espacio */
     body {
         padding: 1rem;
