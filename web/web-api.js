@@ -1,6 +1,6 @@
-// src/web-api.js
+// web/web-api.js
 
-// --- SIMULACIÓN DE LA API DE ELECTRON CON LOCALSTORAGE ---
+// --- SIMULACIÓN DE LA API DE ELECTRON CON LOCALSTORAGE Y BASE64 PARA IMÁGENES ---
 
 // Función para obtener los juegos desde localStorage
 function getGamesFromStorage() {
@@ -13,10 +13,19 @@ function saveGamesToStorage(games) {
     localStorage.setItem('videojuegos', JSON.stringify(games));
 }
 
+// Función para convertir un archivo de imagen a un string Base64
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
 // Creamos el objeto 'api' que nuestro renderer.js espera encontrar
 window.api = {
     getGames: (searchTerm) => {
-        console.log("Usando API web para getGames");
         let games = getGamesFromStorage();
         if (searchTerm) {
             const lowerCaseSearch = searchTerm.toLowerCase();
@@ -25,13 +34,11 @@ window.api = {
                 game.plataforma.toLowerCase().includes(lowerCaseSearch)
             );
         }
-        return Promise.resolve(games); // Devolvemos una promesa para imitar el comportamiento async
+        return Promise.resolve(games);
     },
 
     addGame: (game) => {
-        console.log("Usando API web para addGame");
         const games = getGamesFromStorage();
-        // Simulamos un ID autoincremental
         const newId = games.length > 0 ? Math.max(...games.map(g => g.id)) + 1 : 1;
         const newGame = { ...game, id: newId };
         games.push(newGame);
@@ -40,7 +47,6 @@ window.api = {
     },
 
     updateGame: (updatedGame) => {
-        console.log("Usando API web para updateGame");
         let games = getGamesFromStorage();
         games = games.map(game => game.id === updatedGame.id ? updatedGame : game);
         saveGamesToStorage(games);
@@ -48,21 +54,40 @@ window.api = {
     },
 
     deleteGame: (id) => {
-        console.log("Usando API web para deleteGame");
         let games = getGamesFromStorage();
         games = games.filter(game => game.id !== parseInt(id));
         saveGamesToStorage(games);
         return Promise.resolve();
     },
 
-    // La selección de imágenes no es posible de la misma forma en la web.
-    // Devolvemos null para que no se rompa la lógica.
+    // --- ¡AQUÍ ESTÁ LA MAGIA! ---
+    // Esta es la nueva función para seleccionar imágenes en la web
     selectImage: () => {
-        alert("La selección de imágenes locales no está disponible en la versión web.");
-        return Promise.resolve(null);
+        return new Promise((resolve) => {
+            // Creamos un input de tipo "file" invisible
+            const inputFile = document.createElement('input');
+            inputFile.type = 'file';
+            inputFile.accept = 'image/*';
+
+            // Cuando el usuario selecciona un archivo, lo procesamos
+            inputFile.onchange = async (event) => {
+                const file = event.target.files[0];
+                if (!file) {
+                    resolve(null);
+                    return;
+                }
+                
+                // Convertimos la imagen a Base64 y la devolvemos
+                const base64String = await fileToBase64(file);
+                resolve(base64String);
+            };
+            
+            // Hacemos clic en el input invisible para abrir el diálogo de selección de archivo
+            inputFile.click();
+        });
     },
 
-    // Esta función no es necesaria en la web, ya que las rutas serán URLs o no existirán.
+    // Esta función ahora solo devuelve la misma ruta, ya que la ruta es el dato Base64
     getImagePath: (filePath) => {
         return filePath;
     }
