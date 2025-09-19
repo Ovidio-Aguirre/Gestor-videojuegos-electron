@@ -280,3 +280,51 @@ tbody tr:hover {
     align-items: center;
     gap: 0.5rem; /* Espacio entre el icono y el texto */
 }
+/* --- Media Queries para Responsividad --- */
+
+/* Estilos para pantallas con un ancho máximo de 768px (tablets y móviles) */
+@media (max-width: 768px) {
+
+    /* Reduce el padding general en móviles para dar más espacio */
+    body {
+        padding: 1rem;
+    }
+
+    /* Cambia el formulario principal a una sola columna */
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Cambia la vista de detalles a una sola columna */
+    .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Apila los campos que antes estaban en línea (uno al lado del otro) */
+    .form-group-inline {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    /* Apila los campos de la vista de detalles también */
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    /* Centra la imagen y el formulario de acciones en móviles */
+    .image-upload-container {
+        align-items: center;
+    }
+    .form-actions {
+        justify-content: center;
+    }
+    
+    /* Ajusta el tamaño de la fuente del título en la vista de detalles */
+    .detail-info-container h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+}
