@@ -1,0 +1,440 @@
+/* Importar la fuente Poppins de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* --- Variables y Estilos Globales --- */
+:root {
+    --primary-bg: #121212;
+    --secondary-bg: #1E1E1E;
+    --border-color: #333;
+    --text-primary: #EAEAEA;
+    --text-secondary: #B3B3B3;
+    --accent-green: #1DB954;
+    --accent-red: #E53935;
+    --accent-blue: #2979FF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+    padding: 2rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Botones --- */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-primary {
+    background-color: var(--accent-green);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #333;
+    color: var(--text-primary);
+}
+
+.btn-danger {
+    background-color: var(--accent-red);
+    color: white;
+}
+
+.btn-back {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* --- Vista Principal --- */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.app-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.app-header h1 svg {
+    stroke: var(--accent-green);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#show-add-form-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.table-container {
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+thead {
+    background-color: #2a2a2a;
+}
+
+tbody tr:hover {
+    background-color: #2c2c2c;
+}
+
+.action-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+}
+.action-buttons button.edit-btn:hover { color: var(--accent-blue); }
+.action-buttons button.delete-btn:hover { color: var(--accent-red); }
+
+
+/* --- Vista de Formulario --- */
+#form-view {
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+.image-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.image-preview-box {
+    width: 100%;
+    max-width: 250px;
+    aspect-ratio: 4/5;
+    background-color: var(--primary-bg);
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    object-fit: cover;
+}
+
+.form-fields-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group-inline {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+.form-group-inline .form-group {
+    width: 100%;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- Vista de Detalles --- */
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    padding: 1rem;
+}
+
+.detail-image-container img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 12px;
+    object-fit: cover;
+    aspect-ratio: 4/5;
+}
+
+.detail-info-container h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.detail-info-container label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.detail-info-container p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.detail-status {
+    margin-top: 1rem;
+}
+
+/* --- Panel de Estadísticas (NUEVO) --- */
+#stats-panel {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-item {
+    flex-grow: 1;
+    background-color: var(--secondary-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-item p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.stat-item span {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--accent-green);
+}
+
+
+/* --- Media Queries para Responsividad --- */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    #stats-panel {
+        flex-direction: column;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .form-group-inline {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .image-upload-container {
+        align-items: center;
+    }
+    .form-actions {
+        justify-content: center;
+    }
+    
+    .detail-info-container h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    /* Estilos para la Tabla Responsive */
+    table thead {
+        display: none;
+    }
+
+    table tr {
+        display: block;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+    }
+
+    table td {
+        display: block;
+        text-align: right;
+        border-bottom: none;
+        padding-left: 50%;
+        position: relative;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1rem;
+        width: 45%;
+        text-align: left;
+        font-weight: bold;
+        color: var(--text-secondary);
+    }
+
+    .action-buttons-cell {
+        text-align: center;
+        padding-left: 0;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+    }
+    .action-buttons-cell::before {
+        display: none;
+    }
+    /* --- Panel de Estadísticas (ACTUALIZADO CON GRÁFICO) --- */
+#stats-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.stats-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.stat-item {
+    flex-grow: 1;
+    background-color: var(--secondary-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-item p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.stat-item span {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--accent-green);
+}
+
+.stats-chart-container {
+    background-color: var(--secondary-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    max-height: 200px; 
+}
+
+@media (max-width: 768px) {
+    
+    #stats-panel {
+        grid-template-columns: 1fr; 
+    }
+}
+}

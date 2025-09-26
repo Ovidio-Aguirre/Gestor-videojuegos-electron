@@ -1,0 +1,44 @@
+{
+  "name": "gestor-videojuegos-electon",
+  "version": "1.0.3",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^38.1.2",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "knex": "^3.1.0",
+    "sqlite3": "^5.1.7"
+  },
+  "build": {
+  "appId": "com.tu-nombre.gestor-videojuegos",
+  "productName": "Catálogo de Videojuegos",
+  "files": [
+    "src/**/*",
+      "web/**/*",
+    "package.json"
+  ],
+  "directories": {
+    "output": "dist"
+  },
+  "win": {
+    "icon": "build/icon.png",
+    "target": "nsis"
+  },
+  "mac": {
+    "icon": "build/icon.icns"
+  },
+  "linux": {
+    "icon": "build/icon.png"
+  }
+}
+}
