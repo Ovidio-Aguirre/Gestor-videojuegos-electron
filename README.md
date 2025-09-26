@@ -97,5 +97,3 @@ Esta guía contiene todo lo necesario para configurar el entorno, instalar las d
         2.  La carpeta `/web` no se incluía en el paquete final. Se solucionó actualizando la configuración de `files` en el `package.json`.
 
 ---
-
-Ahora sí, con esta documentación final, el proyecto está listo para ser presentado. ¡Ha sido un excelente trabajo!
